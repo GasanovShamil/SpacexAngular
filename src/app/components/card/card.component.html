@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+    <img mat-card-avatar src="{{launch.links.mission_patch_small}}"/>
+    <mat-card-title>{{launch.rocket.rocket_name}}</mat-card-title>
+    <mat-card-subtitle>{{launch.rocket.rocket_id}}</mat-card-subtitle>
+  </mat-card-header>
+  <!--<img mat-card-image src="{{launch.links.mission_patch}}">-->
+  <!--<mat-card-content>-->
+  <!--<p>-->
+  <!--{{launch.details}}-->
+  <!--</p>-->
+  <!--</mat-card-content>-->
+  <mat-card-actions>
+    <button mat-raised-button (click)="moreButton()">More</button>
+  </mat-card-actions>
+</mat-card>

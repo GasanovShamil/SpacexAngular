@@ -1,0 +1,23 @@
+<mat-tab-group  (selectedTabChange)="onLinkClick($event)">
+  <mat-tab label="All launches">
+    <div class="card-wrapper">
+    <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
+    <!--<mat-list>-->
+      <!--<mat-list-item *ngFor="let launch of launches"> {{launch.flight_number}} - {{launch.rocket.rocket_name}} </mat-list-item>-->
+    <!--</mat-list>-->
+    </div>
+  </mat-tab>
+  <mat-tab label="Latest launch">
+    <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
+  </mat-tab>
+  <mat-tab label="Upcoming launches">
+    <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
+  </mat-tab>
+  <mat-tab label="Past launches">
+    <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
+  </mat-tab>
+  <mat-tab label="Filtered launches">
+    <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
+  </mat-tab>
+</mat-tab-group>
+<spinner></spinner>
