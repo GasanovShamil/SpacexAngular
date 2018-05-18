@@ -62,7 +62,7 @@ export interface LaunchQueryOptions {
   // Filter by payload orbit
   orbit?: string;
   // Filter by successful launches
-  launch_success?: boolean;
+  launch_success: boolean;
   // Filter by launches with reused cores
   reused?: boolean;
   // Filter by sucessful core landings

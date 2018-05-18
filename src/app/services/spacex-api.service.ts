@@ -5,6 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 import {CompanyInfo} from '../models/CompanyInfo';
 import {Launch} from '../models/Launch';
 import {LaunchQueryOptions} from '../models/LaunchQueryOptions';
+import {Rocket} from '../models/Rocket';
 
 const BASE_URL = 'https://api.spacexdata.com/v2/';
 
@@ -43,19 +44,27 @@ export class SpacexApiService {
   }
 
   getAllLaunches(): Observable<Launch[]> {
-    const requestEndpoint = BASE_URL + 'launches/all?order=desc';
+    const requestEndpoint = BASE_URL + 'launches/all?order=asc';
     return this.http.get<Launch[]>(requestEndpoint).pipe(
       catchError(this.handleError)
     );
   }
 
+  getRocketData(rocket_id: string): Observable<Rocket> {
+    const requestEndpoint = BASE_URL + 'rockets/' + rocket_id;
+    return this.http.get<Rocket>(requestEndpoint).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   getFilteredLaunches(options: LaunchQueryOptions): Observable<Launch[]> {
-    const requestEndpoint = BASE_URL + 'launches/all';
-    const queryParams = new HttpParams();
+    const requestEndpoint = BASE_URL + 'launches';
+    let httpParams = new HttpParams();
     Object.keys(options).forEach(function (key) {
-      queryParams.append(key, options[key]);
+      httpParams = httpParams.append(key.toString(), options[key]);
     });
-    return this.http.get<Launch[]>(requestEndpoint).pipe(
+    const queryParams = { params: httpParams };
+    return this.http.get<Launch[]>(requestEndpoint, queryParams).pipe(
       catchError(this.handleError)
     );
   }

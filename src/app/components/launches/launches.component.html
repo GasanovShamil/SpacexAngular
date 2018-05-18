@@ -1,23 +1,60 @@
 <mat-tab-group  (selectedTabChange)="onLinkClick($event)">
   <mat-tab label="All launches">
     <div class="card-wrapper">
-    <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
-    <!--<mat-list>-->
-      <!--<mat-list-item *ngFor="let launch of launches"> {{launch.flight_number}} - {{launch.rocket.rocket_name}} </mat-list-item>-->
-    <!--</mat-list>-->
+      <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
     </div>
   </mat-tab>
   <mat-tab label="Latest launch">
-    <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
+    <div class="card-wrapper">
+      <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
+    </div>
   </mat-tab>
   <mat-tab label="Upcoming launches">
-    <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
+    <div class="card-wrapper">
+      <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
+    </div>
   </mat-tab>
   <mat-tab label="Past launches">
-    <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
+    <div class="card-wrapper">
+      <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
+    </div>
   </mat-tab>
   <mat-tab label="Filtered launches">
-    <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
+    <div class="container">
+      <mat-form-field>
+        <mat-select placeholder="Select options" [(ngModel)]="selectedValue" multiple>
+          <mat-option *ngFor="let option of options" [value]="option.value">
+            {{option.value.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button (click)="doFilteredSearch()">Search</button>
+
+
+      <div *ngIf="selectedValue">
+        <div *ngFor="let value of selectedValue">
+          <div [ngSwitch]="value.type">
+            <mat-form-field *ngSwitchCase="'string'">
+              <input type="text" matInput class="form" [(ngModel)]="queryOptions[value.label]" placeholder="{{value.label}}">
+            </mat-form-field>
+            <mat-form-field *ngSwitchCase="'number'">
+              <input type="number" matInput class="form" [(ngModel)]="queryOptions[value.label]" placeholder="{{value.label}}">
+            </mat-form-field>
+            <mat-checkbox *ngSwitchCase="'boolean'" [(ngModel)]="queryOptions[value.label]" [labelPosition]="'before'" >
+              {{value.label}}
+            </mat-checkbox>
+            <mat-form-field *ngSwitchCase="'Date'">
+                <input matInput [matDatepicker]="picker" [(ngModel)]="queryOptions[value.label]" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="card-wrapper" *ngIf="launches">
+        <app-card [launch]="launch" *ngFor="let launch of launches"></app-card>
+      </div>
+    </div>
   </mat-tab>
 </mat-tab-group>
 <spinner></spinner>
