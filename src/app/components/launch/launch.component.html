@@ -1,0 +1,52 @@
+<div class="container">
+  <img id="logo" src="{{launch.links.mission_patch}}"/>
+<div class="wrapper">
+  <h1>{{launch.flight_number}} - {{launch.mission_name}}</h1>
+
+  <span>{{launch.launch_date_utc}}</span>
+  <br>
+  <button id="video" mat-raised-button (click)="openBottomSheet()">VIDEO</button>
+  <div id="infos">
+    Description
+    <mat-divider></mat-divider>
+    <p>{{launch.details}}</p>
+    Launching Site
+    <mat-divider></mat-divider>
+    <p>{{launch.launch_site.site_name_long}} ({{launch.launch_site.site_name}})</p>
+  </div>
+
+  <mat-accordion *ngIf="rocket">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Rocket Infos
+        </mat-panel-title>
+        <mat-panel-description>
+          {{launch.rocket.rocket_name}} - {{launch.rocket.rocket_type}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-divider></mat-divider>
+      <div>
+        <mat-grid-list cols="2" rowHeight="7:1">
+          <mat-grid-tile>Company</mat-grid-tile>
+          <mat-grid-tile>{{rocket.company}}</mat-grid-tile>
+          <mat-grid-tile>Cost per launch</mat-grid-tile>
+          <mat-grid-tile>${{rocket.cost_per_launch}}</mat-grid-tile>
+          <mat-grid-tile>Success Rate</mat-grid-tile>
+          <mat-grid-tile>{{rocket.success_rate_pct}} %</mat-grid-tile>
+          <mat-grid-tile>Height</mat-grid-tile>
+          <mat-grid-tile>{{rocket.height.meters}} m</mat-grid-tile>
+          <mat-grid-tile>Diameter</mat-grid-tile>
+          <mat-grid-tile>{{rocket.diameter.meters}} m</mat-grid-tile>
+          <mat-grid-tile>Mass</mat-grid-tile>
+          <mat-grid-tile>{{rocket.mass.kg}} kg</mat-grid-tile>
+          <mat-grid-tile>Engines</mat-grid-tile>
+          <mat-grid-tile>{{rocket.engines.number}}</mat-grid-tile>
+        </mat-grid-list>
+        <p>{{rocket.description}}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+</div>
+

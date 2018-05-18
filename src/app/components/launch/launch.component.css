@@ -1,0 +1,26 @@
+#logo {
+  float: left;
+  max-width: 25%;
+  max-height: 25%;
+  margin-right: 10px;
+}
+
+#infos {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+  padding-top: 20px;
+}
+
+.wrapper {
+  float: left;
+  width: 60%;
+}
+
+#video {
+  margin-top: 20px;
+}

@@ -13,7 +13,7 @@ import {Option} from '../../models/Option';
 export class LaunchesComponent implements OnInit {
   launches: Launch[];
   selectedValue: Option[];
-  queryOptions = {};
+  queryOptions = <LaunchQueryOptions>{};
 
 
   options = [
